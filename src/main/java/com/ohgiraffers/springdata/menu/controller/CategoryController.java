@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/categorys")
@@ -34,7 +35,7 @@ public class CategoryController {
         return ResponseEntity.ok().body(categoryDTO);
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<List<?>> findAllCategory(){
         List<Category> categoryList = categoryService.findAllCategory();
         if(categoryList.size() <= 0){
@@ -42,26 +43,28 @@ public class CategoryController {
             error.add("String");
             return ResponseEntity.status(404).body(error);
         }
+        List<CategoryDTO> categoryDTOList = categoryList.stream().map(m-> new CategoryDTO(m)).collect(Collectors.toList());
 
-        return ResponseEntity.ok().body(categoryList);
+        return ResponseEntity.ok().body(categoryDTOList);
     }
 
-    @PostMapping("/regist")
-    public ResponseEntity<?> regist(Category category){
+    @PostMapping
+    public ResponseEntity<?> registCategory(CategoryDTO categoryDTO){
+        Category category = new Category(categoryDTO);
         int result = categoryService.registCategory(category);
 
         return ResponseEntity.ok().body("카테고리 등록에 성공하였습니다.");
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> update(Category category){
-        Category findCategory = categoryService.findCategoryByCode(category.getCategoryCode());
+    @PutMapping
+    public ResponseEntity<?> updateCategory(CategoryDTO categoryDTO){
+        Category findCategory = categoryService.findCategoryByCode(categoryDTO.getCategoryCode());
 
         if (Objects.isNull(findCategory)){
             return ResponseEntity.ok().body("카테리가 존재하지 않습니다.");
         }
 
-        int result = categoryService.updateCategory(findCategory, category);
+        int result = categoryService.updateCategory(findCategory, categoryDTO);
 
         if (result > 0){
             return ResponseEntity.ok().body("카테고리가 수정완료 되었습니다.");
@@ -70,9 +73,9 @@ public class CategoryController {
         }
     }
 
-    @DeleteMapping("/{delete}")
-    public ResponseEntity<?> delete(@PathVariable int delete){
-        categoryService.deleteCategoryCode(delete);
+    @DeleteMapping("{categoryCode}")
+    public ResponseEntity<?> deleteCategory(@PathVariable int categoryCode){
+        categoryService.deleteCategoryCode(categoryCode);
 
         return ResponseEntity.ok().body("카테고리 삭제에 성공하였습니다.");
     }

@@ -1,5 +1,7 @@
 package com.ohgiraffers.springdata.entity;
 
+import com.ohgiraffers.springdata.menu.dto.MenuDTO;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -34,6 +36,14 @@ public class Menu {
         this.menuPrice = menuPrice;
         this.categoryCode = categoryCode;
         this.orderableStatus = orderableStatus;
+    }
+
+    public Menu(MenuDTO menuDTO) {
+        this.menuCode = menuDTO.getMenuCode();
+        this.menuName = menuDTO.getMenuName();
+        this.menuPrice = menuDTO.getMenuPrice();
+        this.categoryCode = menuDTO.getCategoryCode();
+        this.orderableStatus = menuDTO.getOrderableStatus();
     }
 
     public int getMenuCode() {

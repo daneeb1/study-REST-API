@@ -1,6 +1,7 @@
 package com.ohgiraffers.springdata.menu.service;
 
 import com.ohgiraffers.springdata.entity.Menu;
+import com.ohgiraffers.springdata.menu.dto.MenuDTO;
 import com.ohgiraffers.springdata.menu.repository.MenuRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +42,7 @@ public class MenuService {
     }
 
     @Transactional
-    public int updateMenu(Menu findMenu, Menu updateMenu) {
+    public int updateMenu(Menu findMenu, MenuDTO updateMenu) {
 
         if(!Objects.isNull(updateMenu.getMenuName())){
             findMenu.setMenuName(updateMenu.getMenuName());
@@ -57,11 +58,11 @@ public class MenuService {
     }
 
     @Transactional
-    public void deleteCode(int delete) {
+    public void deleteCode(int menuCode) {
 
-        menuRepository.deleteById(delete);
+        menuRepository.deleteById(menuCode);
 
-        Menu menu = menuRepository.findById(delete);
+        Menu menu = menuRepository.findById(menuCode);
 
     }
 }

@@ -1,5 +1,7 @@
 package com.ohgiraffers.springdata.entity;
 
+import com.ohgiraffers.springdata.menu.dto.CategoryDTO;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,6 +28,12 @@ public class Category {
         this.categoryCode = categoryCode;
         this.categoryName = categoryName;
         this.refCategoryCode = refCategoryCode;
+    }
+
+    public Category(CategoryDTO categoryDTO) {
+        this.categoryCode = categoryDTO.getCategoryCode();
+        this.categoryName = categoryDTO.getCategoryName();
+        this.refCategoryCode = categoryDTO.getRefCategoryCode();
     }
 
     public int getCategoryCode() {

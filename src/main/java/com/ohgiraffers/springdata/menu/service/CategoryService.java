@@ -33,16 +33,16 @@ public class CategoryService {
     @Transactional
     public int registCategory(Category category) {
 
-        Category result = categoryRespository.save(category);
+        Category registCategory = categoryRespository.save(category);
 
-        if(Objects.isNull(result)){
+        if(Objects.isNull(registCategory)){
             return 0;
         }else {
             return 1;
         }
     }
     @Transactional
-    public int updateCategory(Category findCategory, Category updateCategory) {
+    public int updateCategory(Category findCategory, CategoryDTO updateCategory) {
 
         if(!Objects.isNull(updateCategory.getCategoryCode())){
             findCategory.setCategoryName(updateCategory.getCategoryName());
@@ -57,9 +57,9 @@ public class CategoryService {
         }
     }
     @Transactional
-    public void deleteCategoryCode(int delete) {
-        categoryRespository.deleteById(delete);
+    public void deleteCategoryCode(int categoryCode) {
+        categoryRespository.deleteById(categoryCode);
 
-        Category category = categoryRespository.findById(delete);
+        Category category = categoryRespository.findById(categoryCode);
     }
 }

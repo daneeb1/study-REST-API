@@ -34,7 +34,7 @@ public class MenuController {
     }
 
     // 전체 조회
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<List<?>> findAllMenu(){
         List<Menu> menuList = menuService.findAllMenu();
         if(menuList.size() <= 0){
@@ -47,24 +47,25 @@ public class MenuController {
     }
 
     // 등록
-    @PostMapping("/regist")
-    public ResponseEntity<?> regist(Menu menu){
+    @PostMapping
+    public ResponseEntity<?> regist(MenuDTO menuDTO){
+        Menu menu = new Menu(menuDTO);
         int result = menuService.registMenu(menu);
 
         return ResponseEntity.ok().body("메뉴 등록에 성공하였습니다.");
     }
 
     // 수정
-    @PutMapping("/update")
-    public ResponseEntity<?> update(Menu menu){
-        Menu findMenu = menuService.findMenuByCode(menu.getMenuCode());
+    @PutMapping
+    public ResponseEntity<?> update(MenuDTO menuDTO){
+        Menu findMenu = menuService.findMenuByCode(menuDTO.getMenuCode());
         // 메뉴 코드로 찾는다.
 
         if(Objects.isNull(findMenu)){
             return ResponseEntity.ok().body("메뉴가 존재하지 않습니다.");
         }
 
-        int result = menuService.updateMenu(findMenu, menu);
+        int result = menuService.updateMenu(findMenu, menuDTO);
 
         if(result > 0){
             return ResponseEntity.ok().body("메뉴 수정이 완료되었습니다.");
@@ -73,9 +74,9 @@ public class MenuController {
         }
     }
 
-    @DeleteMapping("/{delete}")
-    public ResponseEntity<?> delete(@PathVariable int delete){
-        menuService.deleteCode(delete);
+    @DeleteMapping("{menuCode}")
+    public ResponseEntity<?> delete(@PathVariable int menuCode){
+        menuService.deleteCode(menuCode);
 
         return ResponseEntity.ok().body("메뉴 삭제에 성공하였습니다.");
     }
