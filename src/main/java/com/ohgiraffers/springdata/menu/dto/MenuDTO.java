@@ -1,5 +1,6 @@
 package com.ohgiraffers.springdata.menu.dto;
 
+import com.ohgiraffers.springdata.entity.Category;
 import com.ohgiraffers.springdata.entity.Menu;
 
 public class MenuDTO {
@@ -25,7 +26,6 @@ public class MenuDTO {
         this.menuCode = menu.getMenuCode();
         this.menuName = menu.getMenuName();
         this.menuPrice = menu.getMenuPrice();
-        this.categoryCode = menu.getCategoryCode();
         this.orderableStatus = menu.getOrderableStatus();
     }
 
@@ -79,4 +79,5 @@ public class MenuDTO {
                 ", orderableStatus='" + orderableStatus + '\'' +
                 '}';
     }
+
 }

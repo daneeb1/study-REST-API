@@ -2,10 +2,7 @@ package com.ohgiraffers.springdata.entity;
 
 import com.ohgiraffers.springdata.menu.dto.MenuDTO;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tbl_menu")
@@ -21,8 +18,9 @@ public class Menu {
     @Column(name = "menu_price")
     private int menuPrice;
 
-    @Column(name = "category_code")
-    private int categoryCode;
+    @ManyToOne
+    @JoinColumn(name = "category_code")
+    private Category category;
 
     @Column(name = "orderable_status")
     private String orderableStatus;
@@ -30,20 +28,19 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
-        this.menuCode = menuCode;
-        this.menuName = menuName;
-        this.menuPrice = menuPrice;
-        this.categoryCode = categoryCode;
-        this.orderableStatus = orderableStatus;
-    }
-
     public Menu(MenuDTO menuDTO) {
         this.menuCode = menuDTO.getMenuCode();
         this.menuName = menuDTO.getMenuName();
         this.menuPrice = menuDTO.getMenuPrice();
-        this.categoryCode = menuDTO.getCategoryCode();
         this.orderableStatus = menuDTO.getOrderableStatus();
+    }
+
+    public Menu(int menuCode, String menuName, int menuPrice, Category category, String orderableStatus) {
+        this.menuCode = menuCode;
+        this.menuName = menuName;
+        this.menuPrice = menuPrice;
+        this.category = category;
+        this.orderableStatus = orderableStatus;
     }
 
     public int getMenuCode() {
@@ -70,12 +67,12 @@ public class Menu {
         this.menuPrice = menuPrice;
     }
 
-    public int getCategoryCode() {
-        return categoryCode;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryCode(int categoryCode) {
-        this.categoryCode = categoryCode;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getOrderableStatus() {
@@ -92,7 +89,7 @@ public class Menu {
                 "menuCode=" + menuCode +
                 ", menuName='" + menuName + '\'' +
                 ", menuPrice=" + menuPrice +
-                ", categoryCode=" + categoryCode +
+                ", category=" + category +
                 ", orderableStatus='" + orderableStatus + '\'' +
                 '}';
     }
