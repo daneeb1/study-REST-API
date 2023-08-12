@@ -72,7 +72,13 @@ public class Menu {
     }
 
     public void setCategory(Category category) {
+        if(this.category != null){
+            this.category.getMenuList().remove(this);
+        }
         this.category = category;
+        if(!category.getMenuList().contains(this)){
+            category.getMenuList().add(this);
+        }
     }
 
     public String getOrderableStatus() {

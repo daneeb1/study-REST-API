@@ -62,6 +62,14 @@ public class Category {
         this.refCategoryCode = refCategoryCode;
     }
 
+    public void addMenu(Menu menu){
+        this.menuList.add(menu);
+
+        if(menu.getCategory() != this){
+            menu.setCategory(this);
+        }
+    }
+
     public List<Menu> getMenuList() {
         return menuList;
     }
