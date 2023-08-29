@@ -1,6 +1,6 @@
 package com.ohgiraffers.springdata.menu.repository;
 
-import com.ohgiraffers.springdata.entity.Category;
+import com.ohgiraffers.springdata.menu.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {

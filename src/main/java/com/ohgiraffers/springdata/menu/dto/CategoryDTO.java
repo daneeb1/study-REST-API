@@ -1,6 +1,6 @@
 package com.ohgiraffers.springdata.menu.dto;
 
-import com.ohgiraffers.springdata.entity.Category;
+import com.ohgiraffers.springdata.menu.entity.Category;
 
 public class CategoryDTO {
 

@@ -1,4 +1,4 @@
-package com.ohgiraffers.springdata.entity;
+package com.ohgiraffers.springdata.menu.entity;
 
 import com.ohgiraffers.springdata.menu.dto.CategoryDTO;
 

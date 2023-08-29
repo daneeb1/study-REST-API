@@ -1,6 +1,6 @@
 package com.ohgiraffers.springdata.menu.service;
 
-import com.ohgiraffers.springdata.entity.Menu;
+import com.ohgiraffers.springdata.menu.entity.Menu;
 import com.ohgiraffers.springdata.menu.dto.MenuDTO;
 import com.ohgiraffers.springdata.menu.repository.MenuRepository;
 import org.springframework.stereotype.Service;
@@ -34,9 +34,9 @@ public class MenuService {
 
         Menu result = menuRepository.save(menu);
 
-        if(Objects.isNull(result)){
+        if (Objects.isNull(result)) {
             return 0;
-        }else {
+        } else {
             return 1;
         }
     }

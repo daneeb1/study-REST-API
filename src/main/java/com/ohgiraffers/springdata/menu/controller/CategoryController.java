@@ -2,7 +2,7 @@ package com.ohgiraffers.springdata.menu.controller;
 
 
 
-import com.ohgiraffers.springdata.entity.Category;
+import com.ohgiraffers.springdata.menu.entity.Category;
 import com.ohgiraffers.springdata.menu.dto.CategoryDTO;
 import com.ohgiraffers.springdata.menu.service.CategoryService;
 import org.springframework.http.ResponseEntity;

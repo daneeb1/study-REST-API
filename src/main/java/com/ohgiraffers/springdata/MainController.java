@@ -1,4 +1,4 @@
-package com.ohgiraffers.springdata.controller;
+package com.ohgiraffers.springdata;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

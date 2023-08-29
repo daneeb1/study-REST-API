@@ -1,6 +1,6 @@
 package com.ohgiraffers.springdata.menu.service;
 
-import com.ohgiraffers.springdata.entity.Category;
+import com.ohgiraffers.springdata.menu.entity.Category;
 import com.ohgiraffers.springdata.menu.dto.CategoryDTO;
 import com.ohgiraffers.springdata.menu.repository.CategoryRepository;
 import org.springframework.stereotype.Service;

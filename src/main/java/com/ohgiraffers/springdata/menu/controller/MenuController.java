@@ -1,6 +1,6 @@
 package com.ohgiraffers.springdata.menu.controller;
 
-import com.ohgiraffers.springdata.entity.Menu;
+import com.ohgiraffers.springdata.menu.entity.Menu;
 import com.ohgiraffers.springdata.menu.dto.MenuDTO;
 import com.ohgiraffers.springdata.menu.service.MenuService;
 import org.springframework.http.ResponseEntity;
